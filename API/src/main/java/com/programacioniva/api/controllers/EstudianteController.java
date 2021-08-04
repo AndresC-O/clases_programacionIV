@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,10 +19,8 @@ public class EstudianteController {
     //*************************************************************
     @GetMapping("inicio")//GET
     @ResponseBody
-    public Optional<Estudiante> inicio(){
-        Optional<Estudiante> estudiante;
-        estudiante = repository.findById(1);
-        return estudiante;
+    public List<Estudiante> inicio(){
+        return repository.findAll();
     }
     //*************************************************************
     @PostMapping("/registrar")//POST
@@ -31,17 +30,27 @@ public class EstudianteController {
         return estudiante;
     }
     //*************************************************************
-    @DeleteMapping("/eliminar")//DELETE
+    @PutMapping("/actualizar/{id}")//PUT
     @ResponseBody
-    public Estudiante eliminar(@RequestBody Estudiante estudiante){
-        repository.save(estudiante);
-        return estudiante;
+    public Estudiante actualizar(@RequestBody Estudiante newEstudiante, @PathVariable int id){
+        return repository.findById(id).map(estudiante -> {
+            estudiante.setNombre(newEstudiante.getNombre());
+            estudiante.setDireccion(newEstudiante.getDireccion());
+            return repository.save(estudiante);
+        }).orElseGet(() ->{
+            newEstudiante.setId(id);
+            return repository.save(newEstudiante);
+        });
     }
     //*************************************************************
-    @PutMapping("/eliminar")//PUT
+    @DeleteMapping("/eliminar/{id}")//DELETE
     @ResponseBody
-    public Estudiante actualizar(@RequestBody Estudiante estudiante){
-        repository.save(estudiante);
-        return estudiante;
+    public void eliminar(@PathVariable int id){
+        try {
+            repository.deleteById(id);
+            System.out.println("Estudiante eliminado con exito: " + id);
+        }catch (Exception ex){
+            System.out.println(">Ha ocurrido un error, posiblemente no exista ese ID: " + ex);
+        }
     }
 }
