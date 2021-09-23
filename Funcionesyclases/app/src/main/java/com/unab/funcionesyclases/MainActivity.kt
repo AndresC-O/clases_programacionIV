@@ -73,10 +73,15 @@ class MainActivity : AppCompatActivity() {
 
     fun claseyherencia(){
 
-        var student_one = estudiante("Andres Cordova", 20, arrayOf("C#", "Java", "JavaScript", "Python"))
+        var student_one = estudiante("Andres Cordova", 20, arrayOf(estudiante.programacion.JAVA, estudiante.programacion.PYTHON, estudiante.programacion.KOTLIN), null)
+        student_one.edad = 30
+        println(student_one.edad)
+        student_one.codigo()
 
-        for(x in student_one.lenguajes){
-            println("Nombre: " + student_one.nombre + " | Edad: " + student_one.edad + " | Lenguaje: " + x)
-        }
+        var student_two = estudiante("Julio Miguel", 19, arrayOf(estudiante.programacion.PYTHON, estudiante.programacion.REST, estudiante.programacion.RUBY), arrayOf(student_one))
+        println(student_two.nombre)
+        student_two.codigo()
+
+        println("${student_two.amigo?.first()?.nombre} es amigo de ${student_two.nombre}")
     }
 }
