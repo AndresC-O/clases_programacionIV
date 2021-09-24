@@ -8,7 +8,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //Clases enumeradas o enum class
-        enumClases()
+        //enumClases()
+        //Clases Anidadas(nested class) y clases internas (inner class)
+        claseAnidadaEInterna()
     }
 
     //Aqui abordaremos las clases enumeradas
@@ -43,6 +45,21 @@ class MainActivity : AppCompatActivity() {
 
         direccionUsuario = direcciones.SUROESTE
         println(direccionUsuario.descripcion())
+    }
+
+    //aqui veremos las clases aninadas y clases internas
+    private fun claseAnidadaEInterna(){
+
+        //clase anidada(nester class)
+        val miClaseAnidada = MiClaseAnidadaEInterna.MiClaseAnidada()
+        val sumar = miClaseAnidada.suma(10, 15)
+        println("-> El resultado de la suma es: $sumar")
+
+        //clase interna
+        val miClaseInterna = MiClaseAnidadaEInterna().MiClaseInterna()
+        val restarDos = miClaseInterna.restarDos(4)
+        println("-> El resultado de la resta es: $restarDos")
+
     }
 
 }
