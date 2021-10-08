@@ -1,6 +1,6 @@
 package com.unab.poo
 
-class Cocinero(nombre:String, edad:Int, val tipoDeCocina:String):Persona(nombre, edad) {
+class Cocinero(nombre:String, edad:Int, val tipoDeCocina:String):Persona(nombre, edad), Vehiculo {
 
     override fun trabajar(){
         println("Esta persona esta cortando verduras")
@@ -12,5 +12,9 @@ class Cocinero(nombre:String, edad:Int, val tipoDeCocina:String):Persona(nombre,
 
     override fun voyATrabajar(){
         println("Voy a trabajar a un restaurante")
+    }
+
+    override fun conducir(){
+        println("Esta persona ahora conduce una moto")
     }
 }
