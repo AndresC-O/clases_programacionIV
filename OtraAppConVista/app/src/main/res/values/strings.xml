@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CALCUL0 DE VALORES</string>
+    <string name="et_primervalor">Ingrese el primer valor</string>
+    <string name="et_segundovalor">Ingrese el segundo valor</string>
+    <string name="rb_Sumar">Sumar</string>
+    <string name="rb_Restar">Restar</string>
+    <string name="rb_Multiplicar">Multiplicar</string>
+    <string name="rb_Dividir">Dividir</string>
+    <string name="btn_Operar">Calcular</string>
+    <string name="btn_Siguiemte">Siguiente</string>
+    <string name="tvw_Resultado">Resultado</string>
+</resources>
